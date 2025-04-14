@@ -195,5 +195,10 @@ namespace NotificationAPI.Controllers
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+        [HttpGet("hello")]
+        public IActionResult Hello()
+        {
+            return Ok("hello world");
+        }
     }
 }
