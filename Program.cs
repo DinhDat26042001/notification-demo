@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -20,9 +20,10 @@ namespace NotificationAPI
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
-                    webBuilder.UseStartup<Startup>()
-                              .UseUrls($"http://*:{port}");
+                    webBuilder.UseStartup<Startup>();
+
+                    // Bắt buộc để chạy trên Render.com
+                    webBuilder.UseUrls($"http://0.0.0.0:{Environment.GetEnvironmentVariable("PORT")}");
                 });
     }
 }
