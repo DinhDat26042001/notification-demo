@@ -33,7 +33,7 @@ namespace NotificationAPI.Controllers
                 await conn.OpenAsync();
 
                 // Kiểm tra xem Username đã tồn tại chưa
-                string checkQuery = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
+                string checkQuery = "SELECT COUNT(*) FROM NotiAPI_Users WHERE Username = @Username";
                 using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
                 {
                     checkCmd.Parameters.AddWithValue("@Username", user.Username);
@@ -101,7 +101,7 @@ namespace NotificationAPI.Controllers
             using (SqlConnection conn = new SqlConnection(_config.GetConnectionString("MyDB")))
             {
                 await conn.OpenAsync();
-                string query = "SELECT UserId, Username, PasswordHash FROM Users WHERE Username = @Username";
+                string query = "SELECT UserId, Username, PasswordHash FROM NotiAPI_Users WHERE Username = @Username";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
